@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2043
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LEDControl", "LEDControl\LEDControl.csproj", "{7C58AD14-7A8C-4C1C-B533-EDB04C7F48B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "Example\Example.csproj", "{BDA3CFF9-8209-4594-ABAF-C1E794D0A580}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C58AD14-7A8C-4C1C-B533-EDB04C7F48B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C58AD14-7A8C-4C1C-B533-EDB04C7F48B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C58AD14-7A8C-4C1C-B533-EDB04C7F48B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C58AD14-7A8C-4C1C-B533-EDB04C7F48B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDA3CFF9-8209-4594-ABAF-C1E794D0A580}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDA3CFF9-8209-4594-ABAF-C1E794D0A580}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDA3CFF9-8209-4594-ABAF-C1E794D0A580}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDA3CFF9-8209-4594-ABAF-C1E794D0A580}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {763D9D0B-221E-4850-A0A6-96AD1D927A99}
+	EndGlobalSection
+EndGlobal
