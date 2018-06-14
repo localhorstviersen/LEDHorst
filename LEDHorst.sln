@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LEDControl", "LEDControl\LEDControl.csproj", "{7C58AD14-7A8C-4C1C-B533-EDB04C7F48B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LEDControl", "LEDControl\LEDControl.csproj", "{7C58AD14-7A8C-4C1C-B533-EDB04C7F48B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "Example\Example.csproj", "{BDA3CFF9-8209-4594-ABAF-C1E794D0A580}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example", "Example\Example.csproj", "{BDA3CFF9-8209-4594-ABAF-C1E794D0A580}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
