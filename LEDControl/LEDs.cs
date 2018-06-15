@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
 
 namespace LEDControl
 {
-    public class LEDStrip
+    public class LEDs
     {
         private ushort ledCount;
         public ushort LEDCount
@@ -23,9 +21,10 @@ namespace LEDControl
             this.pixel[pixel][2] = b;
             Console.Write(pixel.ToString("X4") + r.ToString("X2") + g.ToString("X2") + b.ToString("X2"));
         }
-        public LEDStrip(ushort ledCount)
+        public LEDs(ushort ledCount)
         {
             pixel = new byte[ledCount][];
+            this.ledCount = ledCount;
             for (ushort i = 0; i < ledCount; i++)
                 pixel[i] = new byte[3];
         }
