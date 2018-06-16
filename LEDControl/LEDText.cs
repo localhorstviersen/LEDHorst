@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading;
 
 namespace LEDControl
@@ -12,12 +10,17 @@ namespace LEDControl
         byte width;
         byte x;
         byte y;
-        public LEDText(LEDMatrix matrix, byte x, byte y, byte width)
+        LEDColorMap colors;
+        LEDColorMap backcolors;
+        public LEDText(LEDMatrix matrix, byte x, byte y, byte width, LEDColorMap foregroundcolors, LEDColorMap backgroundcolors)
         {
             target = matrix;
             this.x = x;
             this.y = y;
             this.width = width;
+            colors = foregroundcolors;
+            backcolors = backgroundcolors;
+
             chars = new Dictionary<char, byte[]>();
 
             chars.Add(' ', new byte[] { 0, 0, 0 });
@@ -130,7 +133,7 @@ namespace LEDControl
         {
             while (run)
             {
-                writeNext(r, g, b);
+                writeNext();
                 Thread.Sleep(sleepelay);
             }
         }
@@ -170,49 +173,49 @@ namespace LEDControl
             offset = 0;
         }
 
-        public void writeNext(byte r, byte g, byte b)
+        public void writeNext()
         {
             for (byte col = 0; col < width; col++)
             {
                 if ((fulltext[(offset + col) % fulltext.Count] & 0b10000000) != 0)
-                    target.setPixel((byte)(x + col), y, r, g, b);
+                    target.setPixel((byte)(x + col), y, colors.getColor(offset + col, 0));
                 else
-                    target.setPixel((byte)(x + col), y, 0, 0, 0);
+                    target.setPixel((byte)(x + col), y, backcolors.getColor(offset + col, 0));
 
                 if ((fulltext[(offset + col) % fulltext.Count] & 0b01000000) != 0)
-                    target.setPixel((byte)(x + col), (byte)(y + 1), r, g, b);
+                    target.setPixel((byte)(x + col), (byte)(y + 1), colors.getColor(offset + col, 1));
                 else
-                    target.setPixel((byte)(x + col), (byte)(y + 1), 0, 0, 0);
+                    target.setPixel((byte)(x + col), (byte)(y + 1), backcolors.getColor(offset + col, 1));
 
                 if ((fulltext[(offset + col) % fulltext.Count] & 0b00100000) != 0)
-                    target.setPixel((byte)(x + col), (byte)(y + 2), r, g, b);
+                    target.setPixel((byte)(x + col), (byte)(y + 2), colors.getColor(offset + col, 2));
                 else
-                    target.setPixel((byte)(x + col), (byte)(y + 2), 0, 0, 0);
+                    target.setPixel((byte)(x + col), (byte)(y + 2), backcolors.getColor(offset + col, 2));
 
                 if ((fulltext[(offset + col) % fulltext.Count] & 0b00010000) != 0)
-                    target.setPixel((byte)(x + col), (byte)(y + 3), r, g, b);
+                    target.setPixel((byte)(x + col), (byte)(y + 3), colors.getColor(offset + col, 3));
                 else
-                    target.setPixel((byte)(x + col), (byte)(y + 3), 0, 0, 0);
+                    target.setPixel((byte)(x + col), (byte)(y + 3), backcolors.getColor(offset + col, 3));
 
                 if ((fulltext[(offset + col) % fulltext.Count] & 0b00001000) != 0)
-                    target.setPixel((byte)(x + col), (byte)(y + 4), r, g, b);
+                    target.setPixel((byte)(x + col), (byte)(y + 4), colors.getColor(offset + col, 4));
                 else
-                    target.setPixel((byte)(x + col), (byte)(y + 4), 0, 0, 0);
+                    target.setPixel((byte)(x + col), (byte)(y + 4), backcolors.getColor(offset + col, 4));
 
                 if ((fulltext[(offset + col) % fulltext.Count] & 0b00000100) != 0)
-                    target.setPixel((byte)(x + col), (byte)(y + 5), r, g, b);
+                    target.setPixel((byte)(x + col), (byte)(y + 5), colors.getColor(offset + col, 5));
                 else
-                    target.setPixel((byte)(x + col), (byte)(y + 5), 0, 0, 0);
+                    target.setPixel((byte)(x + col), (byte)(y + 5), backcolors.getColor(offset + col, 5));
 
                 if ((fulltext[(offset + col) % fulltext.Count] & 0b00000010) != 0)
-                    target.setPixel((byte)(x + col), (byte)(y + 6), r, g, b);
+                    target.setPixel((byte)(x + col), (byte)(y + 6), colors.getColor(offset + col, 6));
                 else
-                    target.setPixel((byte)(x + col), (byte)(y + 6), 0, 0, 0);
+                    target.setPixel((byte)(x + col), (byte)(y + 6), backcolors.getColor(offset + col, 6));
 
                 if ((fulltext[(offset + col) % fulltext.Count] & 0b00000001) != 0)
-                    target.setPixel((byte)(x + col), (byte)(y + 7), r, g, b);
+                    target.setPixel((byte)(x + col), (byte)(y + 7), colors.getColor(offset + col, 7));
                 else
-                    target.setPixel((byte)(x + col), (byte)(y + 7), 0, 0, 0);
+                    target.setPixel((byte)(x + col), (byte)(y + 7), backcolors.getColor(offset + col, 7));
             }
             target.show();
             offset++;

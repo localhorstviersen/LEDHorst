@@ -9,24 +9,27 @@ namespace LEDControl
         {
             get { return ledCount; }
         }
-        protected byte[][] pixel;
+        protected LEDColor[] pixel;
         public void show()
         {
             Console.WriteLine();
         }
-        public void setPixel(ushort pixel, byte r, byte g, byte b)
+        public void setPixel(ushort pixel, LEDColor color)
         {
-            this.pixel[pixel][0] = r;
-            this.pixel[pixel][1] = g;
-            this.pixel[pixel][2] = b;
-            Console.Write(pixel.ToString("X4") + r.ToString("X2") + g.ToString("X2") + b.ToString("X2"));
+            this.pixel[pixel] = color;
+            Console.Write(pixel.ToString("X4") + color.ToString());
+        }
+        public void setPixel(ushort pixel)
+        {
+            this.pixel[pixel] = new LEDColor(0, 0, 0);
+            Console.Write(pixel.ToString("X4") + "000000");
         }
         public LEDs(ushort ledCount)
         {
-            pixel = new byte[ledCount][];
+            pixel = new LEDColor[ledCount];
             this.ledCount = ledCount;
             for (ushort i = 0; i < ledCount; i++)
-                pixel[i] = new byte[3];
+                pixel[i] = new LEDColor(0, 0, 0);
         }
     }
 }

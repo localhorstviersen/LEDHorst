@@ -213,29 +213,32 @@
                 } while (led < offset + width * height);
             }
         }
-        public void setPixel(byte x, byte y, byte r, byte g, byte b)
+        public void setPixel(byte x, byte y, LEDColor color)
         {
-            target.setPixel((ushort)(offset + map[x, y]), r, g, b);
+            target.setPixel((ushort)(offset + map[x, y]), color);
         }
-        public void drawRectangle(byte x, byte y, byte width, byte height, byte r, byte g, byte b)
+        public void setPixel(byte x, byte y)
+        {
+            target.setPixel((ushort)(offset + map[x, y]));
+        }
+        public void drawRectangle(byte x, byte y, byte width, byte height, LEDColor color)
         {
             for (byte tx = x; tx < x + width; tx++)
             {
-                setPixel(tx, y, r, g, b);
-                setPixel(tx, (byte)(y + height - 1), r, g, b);
+                setPixel(tx, y, color);
+                setPixel(tx, (byte)(y + height - 1), color);
             }
-
             for (byte ty = y; ty < y + height; ty++)
             {
-                setPixel(x, ty, r, g, b);
-                setPixel((byte)(x + width - 1), ty, r, g, b);
+                setPixel(x, ty, color);
+                setPixel((byte)(x + width - 1), ty, color);
             }
         }
-        public void fillRectangle(byte x, byte y, byte width, byte height, byte r, byte g, byte b)
+        public void fillRectangle(byte x, byte y, byte width, byte height, LEDColor color)
         {
             for (byte tx = x; tx < x + width; tx++)
                 for (byte ty = y; ty < y + height; ty++)
-                    setPixel(tx, ty, r, g, b);
+                    setPixel(tx, ty, color);
         }
         public void show()
         {
