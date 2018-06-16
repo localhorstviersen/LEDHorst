@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace LEDControl
 {
@@ -18,6 +19,40 @@ namespace LEDControl
             this.y = y;
             this.width = width;
             chars = new Dictionary<char, byte[]>();
+
+            chars.Add(' ', new byte[] { 0, 0, 0 });
+            chars.Add('!', new byte[] { 253 });
+            chars.Add('"', new byte[] { 192, 0, 192 });
+            chars.Add('#', new byte[] { 36, 255, 36, 255, 36 });
+            chars.Add('$', new byte[] { 102, 145, 255, 137, 102 });
+            chars.Add('%', new byte[] { 193, 198, 24, 99, 131 });
+            chars.Add('&', new byte[] { 118, 137, 149, 98, 5 });
+            chars.Add('\'', new byte[] { 192 });
+            chars.Add('(', new byte[] { 60, 66, 129 });
+            chars.Add(')', new byte[] { 129, 66, 60, });
+            chars.Add('*', new byte[] { 18, 12, 63, 12, 18 });
+            chars.Add('+', new byte[] { 4, 4, 31, 4, 4 });
+            chars.Add(',', new byte[] { 5, 6 });
+            chars.Add('-', new byte[] { 8, 8, 8 });
+            chars.Add('.', new byte[] { 3, 3 });
+            chars.Add('/', new byte[] { 1, 6, 24, 96, 128 });
+            chars.Add('0', new byte[] { 126, 133, 153, 161, 126 });
+            chars.Add('1', new byte[] { 65, 255, 1 });
+            chars.Add('2', new byte[] { 67, 133, 137, 145, 97 });
+            chars.Add('3', new byte[] { 130, 129, 145, 169, 198 });
+            chars.Add('4', new byte[] { 24, 40, 72, 255, 8 });
+            chars.Add('5', new byte[] { 242, 145, 145, 145, 142 });
+            chars.Add('6', new byte[] { 62, 81, 145, 145, 142 });
+            chars.Add('7', new byte[] { 128, 135, 152, 160, 192 });
+            chars.Add('8', new byte[] { 110, 145, 145, 145, 110 });
+            chars.Add('9', new byte[] { 112, 137, 137, 138, 116 });
+            chars.Add(':', new byte[] { 102, 102 });
+            chars.Add(';', new byte[] { 101, 102 });
+            chars.Add('<', new byte[] { 8, 20, 34, 65 });
+            chars.Add('=', new byte[] { 20, 20, 20, 20 });
+            chars.Add('>', new byte[] { 65, 34, 20, 8 });
+            chars.Add('?', new byte[] { 64, 128, 141, 144, 96 });
+            chars.Add('@', new byte[] { 78, 149, 159, 129, 126 });
             chars.Add('A', new byte[] { 63, 72, 136, 72, 63 });
             chars.Add('B', new byte[] { 255, 145, 145, 145, 110 });
             chars.Add('C', new byte[] { 126, 129, 129, 129, 66 });
@@ -44,7 +79,12 @@ namespace LEDControl
             chars.Add('X', new byte[] { 129, 102, 24, 102, 129 });
             chars.Add('Y', new byte[] { 128, 64, 63, 64, 128 });
             chars.Add('Z', new byte[] { 131, 133, 153, 161, 193 });
-
+            chars.Add('[', new byte[] { 255, 129, 129 });
+            chars.Add('\\', new byte[] { 128, 96, 24, 6, 1 });
+            chars.Add(']', new byte[] { 129, 129, 255 });
+            chars.Add('^', new byte[] { 32, 64, 128, 64, 32 });
+            chars.Add('_', new byte[] { 1, 1, 1, 1, 1 });
+            chars.Add('`', new byte[] { 128, 64, 32 });
             chars.Add('a', new byte[] { 2, 21, 21, 21, 15 });
             chars.Add('b', new byte[] { 127, 9, 17, 17, 14 });
             chars.Add('c', new byte[] { 14, 17, 17, 17, 2 });
@@ -71,19 +111,10 @@ namespace LEDControl
             chars.Add('x', new byte[] { 17, 10, 4, 10, 17 });
             chars.Add('y', new byte[] { 24, 5, 5, 5, 30 });
             chars.Add('z', new byte[] { 17, 19, 21, 25, 17 });
-
-            chars.Add('0', new byte[] { 126, 133, 153, 161, 126 });
-            chars.Add('1', new byte[] { 65, 255, 1 });
-            chars.Add('2', new byte[] { 67, 133, 137, 145, 97 });
-            chars.Add('3', new byte[] { 130, 129, 145, 169, 198 });
-            chars.Add('4', new byte[] { 24, 40, 72, 255, 8 });
-            chars.Add('5', new byte[] { 242, 145, 145, 145, 142 });
-            chars.Add('6', new byte[] { 62, 81, 145, 145, 142 });
-            chars.Add('7', new byte[] { 128, 135, 152, 160, 192 });
-            chars.Add('8', new byte[] { 110, 145, 145, 145, 110 });
-            chars.Add('9', new byte[] { 112, 137, 137, 138, 116 });
-
-            chars.Add(' ', new byte[] { 0, 0, 0 });
+            chars.Add('{', new byte[] { 24, 255, 129 });
+            chars.Add('|', new byte[] { 255 });
+            chars.Add('}', new byte[] { 129, 255, 24 });
+            chars.Add('~', new byte[] { 8, 16, 8, 8, 16 });
 
             chars.Add('Ä', new byte[] { 191, 72, 136, 72, 191 });
             chars.Add('Ö', new byte[] { 190, 65, 65, 65, 190 });
@@ -92,14 +123,37 @@ namespace LEDControl
             chars.Add('ö', new byte[] { 14, 81, 17, 81, 14 });
             chars.Add('ü', new byte[] { 30, 65, 1, 66, 31 });
 
-
-            chars.Add('!', new byte[] { 253 });
-            chars.Add('+', new byte[] { 4, 4, 31, 4, 4 });
-
-
         }
         List<byte> fulltext;
         int offset;
+        protected void worker()
+        {
+            while (run)
+            {
+                writeNext(r, g, b);
+                Thread.Sleep(sleepelay);
+            }
+        }
+        public void automate(int speed, byte r, byte g, byte b)
+        {
+            sleepelay = speed;
+            this.r = r;
+            this.g = g;
+            this.b = b;
+            run = true;
+            background = new Thread(new ThreadStart(worker));
+            background.Start();
+        }
+        protected Thread background;
+        public void stop()
+        {
+            run = false;
+        }
+        protected bool run;
+        protected int sleepelay;
+        protected byte r;
+        protected byte g;
+        protected byte b;
         public void setText(string text)
         {
             fulltext = new List<byte>();

@@ -29,5 +29,4 @@ namespace LEDControl
                 pixel[i] = new byte[3];
         }
     }
-
 }
