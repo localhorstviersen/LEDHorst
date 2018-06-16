@@ -78,10 +78,10 @@ namespace Example
             m.show();
 
             LEDText txt = new LEDText(m, 0, 0, 16);
-            txt.setText("BIF21");
+            txt.setText("toptest");
 
             LEDText txt2 = new LEDText(m, 0, 8, 16);
-            txt2.setText("WTF was ist den das hier! PENIS!!!");
+            txt2.setText("Bottom test faster");
 
             while (true)
             {
